@@ -45,67 +45,64 @@ server <- function(input, output, session) {
   output$driverRight <- renderText({ selected_drivers[1] })
   output$driverTop <- renderText({ selected_drivers[2] })
   
-  # Create the 4-quadrant space plot (placeholder)
-  output$scenarioPlot <- renderPlot({
-    plot(1:4, 1:4, type = "n", axes = FALSE, xlab = "", ylab = "")
-    rect(1, 1, 2, 2, col = "lightblue")
-    rect(2, 1, 3, 2, col = "lightgreen")
-    rect(1, 2, 2, 3, col = "lightcoral")
-    rect(2, 2, 3, 3, col = "lightyellow")
-    
-    # Add text for the user-inputted scenarios
-    if (input$quad1 != "") {
-      text(1.5, 2.5, input$quad1, cex = 1.2)  # Top Left
-    }
-    if (input$quad2 != "") {
-      text(2.5, 2.5, input$quad2, cex = 1.2)  # Top Right
-    }
-    if (input$quad3 != "") {
-      text(1.5, 1.5, input$quad3, cex = 1.2)  # Bottom Left
-    }
-    if (input$quad4 != "") {
-      text(2.5, 1.5, input$quad4, cex = 1.2)  # Bottom Right
-    }
-  })
   
-  # Generate PDF for download
+  # Define PDF download handler
   output$downloadPDF <- downloadHandler(
     filename = function() {
-      paste0("scenario_planning_report_", Sys.Date(), ".pdf")
+      paste("scenario_toolkit_", Sys.Date(), ".pdf", sep = "")
     },
     content = function(file) {
-      # Create a temporary Rmarkdown file
-      rmd_content <- paste(
-        "---",
-        "title: 'Scenario Planning Report'",
-        "output: pdf_document",
-        "---",
-        "",
-        "<h2>Scenario Planning Report</h2>",
-        "<p><strong>Baseline Trends:</strong></p>",
-        "<ul><li>", selected_baselines[1], "</li><li>", selected_baselines[2], "</li></ul>",
-        
-        "<p><strong>Scenario Drivers:</strong></p>",
-        "<ul><li>Left: ", selected_drivers[1], "</li><li>Bottom: ", selected_drivers[2], "</li></ul>",
-        
-        "<p><strong>Scenario Descriptions:</strong></p>",
-        "<ul>",
-        "<li><strong>Top Left:</strong> ", input$quad1, "</li>",
-        "<li><strong>Top Right:</strong> ", input$quad2, "</li>",
-        "<li><strong>Bottom Left:</strong> ", input$quad3, "</li>",
-        "<li><strong>Bottom Right:</strong> ", input$quad4, "</li>",
-        "</ul>"
+      # Create a temporary .Rmd file for the report content
+      tempReport <- tempfile(fileext = ".Rmd")
+      
+      # Write R Markdown content for the report
+      reportContent <- '
+      ---
+      title: "Future Flight Scenario Toolkit"
+      output: pdf_document
+      ---
+
+      # Baseline Trends
+      - Baseline 1: `r input$baseline1`
+      - Baseline 2: `r input$baseline2`
+
+      # Scenario Matrix
+      
+      **Scenario driver (top):** `r input$driverTop`
+      
+      ```{=latex}
+      \vspace{1em}
+      ```
+
+      |                  | **Scenario 1**             | **Scenario 2**             |  
+      |------------------|----------------------------|----------------------------|  
+      | **Alternative Driver (left)** | `r input$scenario1` | `r input$scenario2` |  
+      |                  | **Scenario 3**             | **Scenario 4**             |  
+      | **Alternative Driver (bottom)** | `r input$scenario3` | `r input$scenario4` |  
+
+      ```{=latex}
+      \vspace{1em}
+      ```
+      
+      **Scenario driver (right):** `r input$driverRight`
+
+      - **Alternative Driver (left):** `r input$altDriverLeft`
+      - **Alternative Driver (bottom):** `r input$altDriverBottom`
+      '
+      
+      # Write the report content to the temporary Rmd file
+      writeLines(reportContent, tempReport)
+      
+      # Render the R Markdown document to a PDF file
+      tryCatch(
+        {
+          rmarkdown::render(tempReport, output_file = file, output_format = "pdf_document")
+        },
+        error = function(e) {
+          showNotification("Failed to generate PDF. Please check your LaTeX installation.", type = "error")
+          stop("PDF rendering failed.")
+        }
       )
-      
-      # Save this content as an Rmd file
-      rmd_file <- tempfile(fileext = ".Rmd")
-      writeLines(rmd_content, con = rmd_file)
-      
-      # Render the Rmd file to PDF
-      render(rmd_file, output_file = file, output_format = "pdf_document")
-      
-      # Clean up the temporary Rmd file
-      unlink(rmd_file)
     }
   )
 }

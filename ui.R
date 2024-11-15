@@ -30,13 +30,13 @@ ui <- fluidPage(
   fluidRow(
     column(3),
     column(3,
-           textInput("Scenario1", 
+           textInput("scenario1", 
                      label = tags$label(style = "color: #D5006D;", "Scenario 1"), 
                      value = "")
            
     ),
     column(3,
-           textInput("Scenario2", 
+           textInput("scenario2", 
                      label = tags$label(style = "color: #D5006D;", "Scenario 2"), 
                      value = "")
            
@@ -59,13 +59,13 @@ ui <- fluidPage(
   fluidRow(
     column(3),
     column(3,
-           textInput("Scenario3", 
+           textInput("scenario3", 
                      label = tags$label(style = "color: #D5006D;", "Scenario 3"), 
                      value = "")
            
     ),
     column(3,
-           textInput("Scenario4", 
+           textInput("scenario4", 
                      label = tags$label(style = "color: #D5006D;", "Scenario 4"), 
                      value = "")
            
