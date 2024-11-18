@@ -61,3 +61,23 @@ rmarkdown::render("hello_world_with_labeled_matrix_all_sides.Rmd")
         "\\]",
         sep = "\n"
       )
+      
+      
+      
+      
+      \[
+\begin{array}{c}
+\textbf{\text{Driver:}} \, \text{`r params$driverTop`}} \\\\
+\hspace{10mm}
+\textbf{\text{Alternative driver:}} \, \text{`r params$altDriverLeft`}} \hspace{2mm}
+\begin{array}{|c|c|}
+\hline
+\textbf{\text{Scenario 1:}} \, \text{`r params$scenario1`} & \textbf{\text{Scenario 2:}} \, \text{`r params$scenario2`} \\\\
+\hline
+\textbf{\text{Scenario 3:}} \, \text{`r params$scenario3`} & \textbf{\text{Scenario 4:}} \, \text{`r params$scenario4`} \\\\
+\hline
+\end{array} 
+\hspace{2mm} \textbf{\text{Driver:}} \, \text{`r params$driverRight`}} \\\\
+\textbf{\text{\text{Alternative driver:}} \, `r params$altDriverBottom`}} 
+\end{array}
+\]

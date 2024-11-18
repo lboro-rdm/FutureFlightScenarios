@@ -1,12 +1,9 @@
 library(shiny)
-library(dplyr)
 library(rmarkdown)
-library(shinyjs)
 
-# Define server logic
 server <- function(input, output, session) {
   
-  # Predefined baseline trends and scenario drivers
+  # Define baseline trends and scenario drivers
   baseline_trends <- c(
     "More geopolitical wars, disrupting the supply of key materials and components",
     "An increased use of drones for terrorism and weaponization",
@@ -39,13 +36,13 @@ server <- function(input, output, session) {
   selected_baselines <- sample(baseline_trends, 2)
   selected_drivers <- sample(scenario_drivers, 2)
   
-  # Display selected baseline trends and scenario drivers
+  # Display selected baseline trends and scenario drivers in the UI
   output$baseline1 <- renderText({ selected_baselines[1] })
   output$baseline2 <- renderText({ selected_baselines[2] })
   output$driverRight <- renderText({ selected_drivers[1] })
   output$driverTop <- renderText({ selected_drivers[2] })
   
-  
+  # PDF download handler
   output$downloadPDF <- downloadHandler(
     filename = function() { paste("Future_Flight_Scenario_Report", Sys.Date(), ".pdf", sep = "") },
     content = function(file) {
@@ -58,10 +55,10 @@ server <- function(input, output, session) {
       # Render the RMarkdown document with parameters
       rmarkdown::render(tempReport, output_file = file,
                         params = list(
-                          baseline1 = output$baseline1(), 
-                          baseline2 = output$baseline2(),
-                          driverTop = output$driverTop(),
-                          driverRight = output$driverRight(),
+                          baseline1 = selected_baselines[1], 
+                          baseline2 = selected_baselines[2],
+                          driverTop = selected_drivers[2],
+                          driverRight = selected_drivers[1],
                           scenario1 = input$scenario1,
                           scenario2 = input$scenario2,
                           scenario3 = input$scenario3,

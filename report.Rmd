@@ -1,6 +1,10 @@
 ---
 title: "Future Flight Scenario Report"
-output: pdf_document
+output: 
+  pdf_document:
+    extra_dependencies: ["geometry"]
+geometry: margin=1in, landscape
+  
 params:
   baseline1: ""
   baseline2: ""
@@ -36,3 +40,27 @@ params:
 
 - **Alternative Driver (Left):** `r params$altDriverLeft`
 - **Alternative Driver (Bottom):** `r params$altDriverBottom`
+
+\[
+\begin{array}{c}
+\parbox{4cm}{\centering \textbf{Driver:} \\ `r params$driverTop`} \\\\
+\hspace{10mm}
+\parbox{4cm}{\centering \textbf{Alternative Driver:} \\ `r params$altDriverLeft`} \hspace{2mm}
+\begin{array}{|c|c|}
+\hline
+\textbf{Scenario 1:} & \textbf{Scenario 2:} \\\\
+\hline
+\parbox{6cm}{`r params$scenario1`} & \parbox{6cm}{`r params$scenario2`} \\\\
+\hline
+\textbf{Scenario 3:} & \textbf{Scenario 4:} \\\\
+\hline
+\parbox{6cm}{`r params$scenario3`} & \parbox{6cm}{`r params$scenario4`} \\\\
+\hline
+\end{array}
+\hspace{2mm} \parbox{4cm}{\centering \textbf{Driver:} \\ `r params$driverRight`} \\\\
+\parbox{4cm}{\centering \textbf{Alternative Driver:} \\ `r params$altDriverBottom`} 
+\end{array}
+\]
+
+
+
