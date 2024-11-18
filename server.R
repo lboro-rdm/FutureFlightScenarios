@@ -70,4 +70,21 @@ server <- function(input, output, session) {
       )
     }
   )
+  
+  # Observe all six text inputs and enable the download button only if all have values
+  observe({
+    all_filled <- all(
+      input$scenario1 != "", input$scenario2 != "", 
+      input$scenario3 != "", input$scenario4 != "",
+      input$altDriverLeft != "", input$altDriverBottom != ""
+    )
+    
+    # Enable or disable the button based on whether all inputs are filled
+    if (all_filled == F) {
+      shinyjs::disable("downloadPDF")
+    } else {
+      shinyjs::enable("downloadPDF")
+    }
+  })
+  
 }
