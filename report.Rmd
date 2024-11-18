@@ -1,0 +1,38 @@
+---
+title: "Future Flight Scenario Report"
+output: pdf_document
+params:
+  baseline1: ""
+  baseline2: ""
+  driverTop: ""
+  driverRight: ""
+  scenario1: ""
+  scenario2: ""
+  scenario3: ""
+  scenario4: ""
+  altDriverLeft: ""
+  altDriverBottom: ""
+---
+
+# Baseline Trends
+
+- Baseline Trend 1: `r params$baseline1`
+- Baseline Trend 2: `r params$baseline2`
+
+# Scenario Matrix
+
+**Scenario Driver (Top):** `r params$driverTop`
+
+## Scenarios
+
+- **Scenario 1:** `r params$scenario1`
+- **Scenario 2:** `r params$scenario2`
+- **Scenario 3:** `r params$scenario3`
+- **Scenario 4:** `r params$scenario4`
+
+**Scenario Driver (Right):** `r params$driverRight`
+
+# Alternative Drivers
+
+- **Alternative Driver (Left):** `r params$altDriverLeft`
+- **Alternative Driver (Bottom):** `r params$altDriverBottom`

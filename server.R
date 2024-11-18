@@ -46,62 +46,30 @@ server <- function(input, output, session) {
   output$driverTop <- renderText({ selected_drivers[2] })
   
   
-  # Define PDF download handler
   output$downloadPDF <- downloadHandler(
-    filename = function() {
-      paste("scenario_toolkit_", Sys.Date(), ".pdf", sep = "")
-    },
+    filename = function() { paste("Future_Flight_Scenario_Report", Sys.Date(), ".pdf", sep = "") },
     content = function(file) {
-      # Create a temporary .Rmd file for the report content
-      tempReport <- tempfile(fileext = ".Rmd")
+      # Temporary file path for the RMarkdown document
+      tempReport <- file.path(tempdir(), "report.Rmd")
       
-      # Write R Markdown content for the report
-      reportContent <- '
-      ---
-      title: "Future Flight Scenario Toolkit"
-      output: pdf_document
-      ---
-
-      # Baseline Trends
-      - Baseline 1: `r input$baseline1`
-      - Baseline 2: `r input$baseline2`
-
-      # Scenario Matrix
+      # Copy the Rmd template to the temporary location
+      file.copy("report.Rmd", tempReport, overwrite = TRUE)
       
-      **Scenario driver (top):** `r input$driverTop`
-      
-      ```{=latex}
-      \vspace{1em}
-      ```
-
-      |                  | **Scenario 1**             | **Scenario 2**             |  
-      |------------------|----------------------------|----------------------------|  
-      | **Alternative Driver (left)** | `r input$scenario1` | `r input$scenario2` |  
-      |                  | **Scenario 3**             | **Scenario 4**             |  
-      | **Alternative Driver (bottom)** | `r input$scenario3` | `r input$scenario4` |  
-
-      ```{=latex}
-      \vspace{1em}
-      ```
-      
-      **Scenario driver (right):** `r input$driverRight`
-
-      - **Alternative Driver (left):** `r input$altDriverLeft`
-      - **Alternative Driver (bottom):** `r input$altDriverBottom`
-      '
-      
-      # Write the report content to the temporary Rmd file
-      writeLines(reportContent, tempReport)
-      
-      # Render the R Markdown document to a PDF file
-      tryCatch(
-        {
-          rmarkdown::render(tempReport, output_file = file, output_format = "pdf_document")
-        },
-        error = function(e) {
-          showNotification("Failed to generate PDF. Please check your LaTeX installation.", type = "error")
-          stop("PDF rendering failed.")
-        }
+      # Render the RMarkdown document with parameters
+      rmarkdown::render(tempReport, output_file = file,
+                        params = list(
+                          baseline1 = output$baseline1(), 
+                          baseline2 = output$baseline2(),
+                          driverTop = output$driverTop(),
+                          driverRight = output$driverRight(),
+                          scenario1 = input$scenario1,
+                          scenario2 = input$scenario2,
+                          scenario3 = input$scenario3,
+                          scenario4 = input$scenario4,
+                          altDriverLeft = input$altDriverLeft,
+                          altDriverBottom = input$altDriverBottom
+                        ),
+                        envir = new.env(parent = globalenv())
       )
     }
   )
