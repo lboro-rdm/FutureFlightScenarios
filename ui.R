@@ -45,15 +45,15 @@ the outcomes of future scenarios, such as changes in technological, environmenta
   fluidRow(
     column(3),
     column(3,
-           textInput("scenario1", 
+           textAreaInput("scenario1", 
                      label = tags$label(style = "color: #D5006D;", "Scenario 1"), 
-                     value = "")
+                     value = "", rows = 4, cols = 40)
            
     ),
     column(3,
-           textInput("scenario2", 
+           textAreaInput("scenario2", 
                      label = tags$label(style = "color: #D5006D;", "Scenario 2"), 
-                     value = "")
+                     value = "", rows = 4, cols = 40)
            
     ),
     column(3)
@@ -61,28 +61,30 @@ the outcomes of future scenarios, such as changes in technological, environmenta
   fluidRow(
     column(3,
            div(style = "text-align: center;",
-               textInput("altDriverLeft", 
-                         label = tags$label(style = "color: green;", "Alternative Driver"), value = "")
+               textAreaInput("altDriverLeft", 
+                         label = tags$label(style = "color: green;", "Alternative Driver"), value = "", rows = 2, cols = 40)
            )
     ),
     column(6),
     column(3,
-           p(tags$strong(style = "color:red;", "Scenario driver")),
-           div(style = "color: red;", textOutput("driverRight"))
+           div(style = "text-align: center;",
+               p(tags$strong(style = "color:red;", "Scenario driver")),
+               div(style = "color: red;", textOutput("driverRight"))
+           )
     )
   ),
   fluidRow(
     column(3),
     column(3,
-           textInput("scenario3", 
+           textAreaInput("scenario3", 
                      label = tags$label(style = "color: #D5006D;", "Scenario 3"), 
-                     value = "")
+                     value = "", rows = 4, cols = 40)
            
     ),
     column(3,
-           textInput("scenario4", 
+           textAreaInput("scenario4", 
                      label = tags$label(style = "color: #D5006D;", "Scenario 4"), 
-                     value = "")
+                     value = "", rows = 4, cols = 40)
            
     ),
     column(3)
@@ -91,16 +93,107 @@ the outcomes of future scenarios, such as changes in technological, environmenta
     column(12,
            div(style = "text-align: center;",
                div(style = "display: inline-block; width:20%;",
-                   textInput("altDriverBottom", 
-                             label = tags$label(style = "color: green;", "Alternative Driver"), value = "")
+                   textAreaInput("altDriverBottom", 
+                             label = tags$label(style = "color: green;", "Alternative Driver"), value = "", rows = 2, cols = 40)
                )
            )
     )
   )
 )),
 
-  tabPanel("Example"
-  ),
+tabPanel("Example",
+fluidRow(
+  column(12,
+         div(style = "text-align: left;",
+             h4(style = "color:blue;", "Baseline Trends"),
+             tags$ul(
+               tags$li(style = "color:blue;", "More geopolitical wars, disrupting the supply of key materials and components"),
+               tags$li(style = "color:blue;", "Water/food scarcity due to climate change.")
+             )
+         )
+  )
+),
+
+         fluidRow(
+           column(4),
+           column(4,
+                  p(),
+                  div(style = "text-align: center;",
+                      h3("Scenario Matrix")),
+                  div(style = "text-align: center;",
+                      p(tags$strong(style = "color:red;", "Scenario driver")),
+                      div(style = "color: red;", "Businesses focus more on society and the environment")
+                  ),
+                  p()
+           ),
+           column(4)
+         ),
+         fluidRow(
+           column(3),
+           column(3,
+                  div(style = "border: 2px solid black; padding: 10px; margin: 5px; text-align: left;",
+                      p(tags$strong(style = "color:#D5006D;", "Scenario 1")),
+                      div(style = "color: #D5006D;", 
+                          "Businesses prioritise addressing the societal and environmental needs, yet hampered by the limited access to the most advanced FF technologies development.")
+                  )
+           ),
+           column(3,
+                  div(style = "border: 2px solid black; padding: 10px; margin: 5px; text-align: left;",
+                      p(tags$strong(style = "color:#D5006D;", "Scenario 2")),
+                      div(style = "color: #D5006D;", 
+                          "Businesses align with societal and environmental values. Sustainable innovations flourish. Decentralised supply chains are built to resist geopolitical shocks. FF technologies are adopted, propelled by the convenience.")
+                  )
+           ),
+           column(3)
+         ),
+         fluidRow(
+           column(3,
+                  div(style = "text-align: center;",
+                      p(tags$strong(style = "color:green;", "Alternative driver")),
+                      div(style = "text-align: center; color: green;", 
+                          "Future Flight technologies are limited to industrial / military applications")
+                  )
+           ),
+           column(6),
+           column(3,
+                  div(style = "text-align: center;",
+                      p(tags$strong(style = "color:red;", "Scenario driver")),
+                      div(style = "text-align: center; color: red;", 
+                          "Public see the increased convenience of Future Flight technologies")
+                  )
+           )
+         ),
+         fluidRow(
+           column(3),
+           column(3,
+                  div(style = "border: 2px solid black; padding: 10px; margin: 5px; text-align: left;",
+                      p(tags$strong(style = "color:#D5006D;", "Scenario 3")),
+                      div(style = "color: #D5006D;", 
+                          "Capital-driven businesses and restricted access to FF technologies exacerbate geopolitical tensions. Investments in military applications overshadow the societal and environmental needs, leading to conflicts between military-industrial and civilian needs.")
+                  )
+           ),
+           column(3,
+                  div(style = "border: 2px solid black; padding: 10px; margin: 5px; text-align: left;",
+                      p(tags$strong(style = "color:#D5006D;", "Scenario 4")),
+                      div(style = "color: #D5006D;", 
+                          "Driven by the capital, businesses keep advancing technologies to enhance daily convenience. While the new consumer market is on the rise, the underlying problems of supply chains and resource scarcity are lurking in the background.")
+                  )
+           ),
+           column(3)
+         ),
+         fluidRow(
+           column(4),
+           column(4,
+                  p(),
+                  div(style = "text-align: center;",
+                      p(tags$strong(style = "color:green;", "Alternative driver")),
+                      div(style = "text-align: center; color: green;", 
+                          "Future Flight technologies are limited to industrial / military applications")
+                  )
+           ),
+           column(4)
+         )
+),
 
   tabPanel("About"
   )
