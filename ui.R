@@ -195,8 +195,34 @@ fluidRow(
          )
 ),
 
-  tabPanel("About"
-  )
+### ABOUT TABPANEL
 
+
+tabPanel("About",
+         fluidPage(
+           p("This app was based on the Future Flight Scenario Toolkit, which can be found at:"),
+           p("Liao, Chenyi; Parker, Christopher J.; Parkhurst, Graham (2024). Future Flight Scenario Toolkit. Loughborough University. Online resource. ", 
+             a("https://doi.org/10.17028/rd.lboro.25671153", href = "https://doi.org/10.17028/rd.lboro.25671153", target = "_blank"), "© CC-BY-NC 4.0."),
+           p("It has been created and maintained by Lara Skelly for Loughborough University. The code can be found on ", 
+             a("GitHub", href = "https://github.com/lboro-rdm/FutureFlightScenarios.git", target = "_blank")),
+           p(),
+           p("To cite this app:"),
+           p("Skelly, Lara (2024). Future Flight Scenarios: a R/Shiny app that prompts imagining a future where flight is very different. Loughborough University. Online resource.  ", 
+             a("https://doi.org/10.17028/rd.lboro.27852363", href = "https://doi.org/10.17028/rd.lboro.27852363", target = "_blank"), "© MIT."),
+           p(),
+           p("Throughout the creation of this Shiny app, ChatGPT acted as a conversation partner and a code checker."),
+           p(),
+           tags$p("The following packages were used in this code:"),
+           tags$ul(
+             tags$li(a("rmarkdown", href = "https://rmarkdown.rstudio.com/")),
+             tags$li(a("shiny", href = "https://shiny.posit.co/")),
+             tags$li(a("shinydashboard", href = "https://rstudio.github.io/shinydashboard/")),
+             tags$li(a("shinyjs", href = "https://deanattali.com/shinyjs/"))
+           ),
+           p(),
+           p("This app was funded by the ", a("Arts Council England Develop Your Creative Practice Grant", href = "https://www.artscouncil.org.uk/dycp")),
+           tags$img(src = "logo.png", width = "300px")  # Adjust width as needed
+         )
+)
 
 )
