@@ -8,7 +8,7 @@ ui <- navbarPage(
   title = "Future Flight Scenario Toolkit",
   tabPanel("Imagine",
            fluidPage(
-             p("INSTRUCTIONS: Consider the two baseline trends, then read the two scenario drivers. Input alterative drivers in the spaces provided and with that information consider four scenarios, each takes a combonation of scenario drivers and alternative drivers. Finally, download the pdf with your reflections, which you can bring to your team for discussion."),
+             p("INSTRUCTIONS: Consider the two baseline trends, then read the two scenario drivers. Input alternative drivers in the spaces provided and with that information consider four scenarios, each takes a combonation of scenario drivers and alternative drivers. Finally, download the pdf with your reflections, which you can bring to your team for discussion."),
   p(),
   p("Baseline trends capture the broader societal, technological, economic, or environmental trends in the envisioned future of 2050."),
   p(),
