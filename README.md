@@ -1,5 +1,5 @@
 # FutureFlightScenarios
-A shiny app that prompts the user to work through various scenarios regarding the future of flight. See the live app at
+A shiny app that prompts the user to work through various scenarios regarding the future of flight. See the live app at https://research-data-lboro.shinyapps.io/FutureFlightScenarios/
 
 ## Installation
 ### Prerequisites
