@@ -1,8 +1,46 @@
+/* Card styling */
 .card-box {
-  background-color: white; /* Ensures the card has a background */
+    background-color: white; /* Ensures the card has a background */
     border-radius: 12px; /* Rounded corners */
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
     padding: 15px; /* Adds some inner spacing */
     margin: 10px 0; /* Adds space between cards */
     border: 1px solid #ddd; /* Light border for subtle definition */
+}
+
+.selectize-input {
+  width: 100% !important; /* Set selectize input width to 100% */
+}
+
+.selectize-dropdown {
+  width: auto !important; /* Keep dropdown width automatic */
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #333 !important; /* Dark grey navbar */
+    color: white !important; /* White text */
+    border-bottom: 2px solid #222; /* Slightly darker bottom border */
+}
+
+/* Navbar links */
+.navbar-nav > li > a {
+    color: white !important; /* Ensures the text is white */
+}
+
+/* Selected tab styling */
+.navbar-nav > li.active > a,
+.navbar-nav > li.active > a:focus,
+.navbar-nav > li.active > a:hover {
+    background-color: #444 !important; /* Slightly lighter than the navbar */
+    color: white !important;
+}
+
+/* Hover effect for navbar links */
+.navbar-nav > li > a:hover {
+    background-color: #555 !important; /* Even lighter on hover */
+}
+/* Navbar title styling */
+.navbar .navbar-header .navbar-brand {
+    color: white !important; /* White color for the title */
 }

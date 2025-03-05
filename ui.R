@@ -21,15 +21,20 @@ ui <- tags$html(
                
                fluidRow(
                  h2("Step 1: Select baseline trends"),
-                 p("Place holder for instruction"),
+                 p("Baseline trends capture the broader societal, technological, economic, or environmental trends in the envisioned future of 2050."),
+                 p("Choose two that are relevant for your industry."),
                  layout_columns(
                    card(class = "card-box",
                         card_header("Baseline trend 1"),
-                        p("Place holder for dropdown?")
+                        selectInput("baseline_trend_1", "Select Baseline Trend 1:",
+                                    choices = baseline_trends, 
+                                    selected = NULL)  # Set default selection
                    ),
                    card(class = "card-box",
                         card_header("Baseline trend 2"),
-                        p("Placeholder for dropdown?")
+                        selectInput("baseline_trend_2", "Select Baseline Trend 2:",
+                                    choices = baseline_trends, 
+                                    selected = NULL)  # Set default selection
                    )
                  )
                ),
@@ -151,6 +156,6 @@ ui <- tags$html(
                            style = "color: #ffffff !important; text-decoration: none;")
              )
            ),
-           style = "background-color: #333; color: #ffcc00 !important; padding: 10px; margin-top: 30px; text-align: center;"
+           style = "background-color: #333; padding: 10px; margin-top: 30px; text-align: center;"
   )
 )
