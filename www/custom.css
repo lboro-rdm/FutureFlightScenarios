@@ -6,6 +6,8 @@
     padding: 15px; /* Adds some inner spacing */
     margin: 10px 0; /* Adds space between cards */
     border: 1px solid #ddd; /* Light border for subtle definition */
+    width: 100% !important;  /* Force it to take full width */
+    max-width: 100% !important;  /* Ensure no max width is restricting it */
 }
 
 .selectize-input {

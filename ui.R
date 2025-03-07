@@ -1,3 +1,8 @@
+library(shiny)
+library(rmarkdown)
+library(shinyjs)
+library(bslib)
+
 ui <- tags$html(
   lang = "en",
   tags$head(
@@ -20,73 +25,43 @@ ui <- tags$html(
                hr(),
                
                fluidRow(
-                 h2("Step 1: Select baseline trends"),
-                 p("Baseline trends capture the broader societal, technological, economic, or environmental trends in the envisioned future of 2050."),
-                 p("Choose two that are relevant for your industry."),
+                 h2("Step 1: Select trends and drivers"),
                  layout_columns(
                    card(class = "card-box",
-                        card_header("Baseline trend 1"),
-                        selectInput("baseline_trend_1", "Select Baseline Trend 1:",
-                                    choices = baseline_trends, 
-                                    selected = NULL)  # Set default selection
+                        h3("Baseline trends"),
+                        p("Baseline trends capture the broader societal, technological, economic, or environmental trends in the envisioned future of 2050."),
+                        checkboxGroupInput(
+                          "baseline_trends_selected",
+                          label = "Choose two that are relevant for your industry:",
+                          choices = baseline_trends
+                        )
                    ),
                    card(class = "card-box",
-                        card_header("Baseline trend 2"),
-                        selectInput("baseline_trend_2", "Select Baseline Trend 2:",
-                                    choices = baseline_trends, 
-                                    selected = NULL)  # Set default selection
+                        h3("Industry drivers"),
+                        p("Placeholder for driver text."),
+                        checkboxGroupInput(
+                          "drivers_selected",
+                          label = "Choose two drivers that you would like to work with:",
+                          choices = drivers
+                        )
                    )
-                 )
+                 ),
                ),
                hr(),
                
                fluidRow(
-                 h2("Step 2: Select industry drivers"),
-                 p("Place holder for instruction"),
-                 layout_columns(
-                   card(class = "card-box",
-                        card_header("Driver 1"),
-                        p("Place holder for dropdown?")
-                   ),
-                   card(class = "card-box",
-                        card_header("Driver 2"),
-                        p("Placeholder for dropdown?")
-                   )
-                 )
+                 h2("Step 2: Write alternative drivers"),
+                 p("Once you've selected the drivers in step 1, imagine what the alternative would be."),
+                 uiOutput("alternative_drivers_ui")
                ),
                hr(),
                
                fluidRow(
-                 h2("Step 3: Write alternative drivers"),
-                 p("Place holder for instruction"),
-                 layout_columns(
-                   card(class = "card-box",
-                        card_header("Alternative driver 1"),
-                        p("Place holder for text box?")
-                   ),
-                   card(class = "card-box",
-                        card_header("Alternative driver 2"),  # Fixed typo here too
-                        p("Placeholder for text box?")
-                   )
-                 )
-               ),
-               hr(),
-               
-               fluidRow(
-                 h2("Step 4: Write your four scenarios"),
+                 h2("Step 3: Write your four scenarios"),
                  p("Place holder for instruction"),
                  
                  h3("Scenario 1"),
-                 layout_columns(
-                   card(class = "card-box", p("Baseline trends")),
-                   card(class = "card-box", p("Driver 1")),
-                   card(class = "card-box", p("Driver 2"))
-                 ),
-                 layout_columns(
-                   card(class = "card-box",
-                        p("placeholder for textbox input")
-                        )
-                 ),
+                 uiOutput("scenario_ui"),
                  
                  h3("Scenario 2"),
                  layout_columns(
@@ -123,12 +98,11 @@ ui <- tags$html(
                         p("placeholder for textbox input")
                    )
                  )
-                 
                ),
                hr(),
                
                fluidRow(
-                 h2("Step 5: Download the pdf"),
+                 h2("Step 4: Download the pdf"),
                  p("Place holder for instruction"),
                  layout_columns(
                    card(class = "card-box",
