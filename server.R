@@ -74,4 +74,27 @@ server <- function(input, output, session) {
     do.call(fluidRow, scenarios)  # Combine all scenarios into a single fluidRow
   })
   
+  observeEvent(input$next1, {
+    updateTabsetPanel(session, "imagine_tabs", selected = "Step 2")
+  })
+  
+  observeEvent(input$back1, {
+    updateTabsetPanel(session, "imagine_tabs", selected = "Step 1")
+  })
+  
+  observeEvent(input$next2, {
+    updateTabsetPanel(session, "imagine_tabs", selected = "Step 3")
+  })
+  
+  observeEvent(input$back2, {
+    updateTabsetPanel(session, "imagine_tabs", selected = "Step 2")
+  })
+  
+  observeEvent(input$next3, {
+    updateTabsetPanel(session, "imagine_tabs", selected = "Step 4")
+  })
+  
+  observeEvent(input$back3, {
+    updateTabsetPanel(session, "imagine_tabs", selected = "Step 3")
+  })
 }
