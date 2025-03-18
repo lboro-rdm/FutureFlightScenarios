@@ -50,7 +50,7 @@ server <- function(input, output, session) {
       lapply(seq_along(selected_drivers), function(i) {
         column(6,
                card(class = "card-box",
-                    h3(paste("Driver selected:", selected_drivers[i])),
+                    p(paste("Driver selected:", selected_drivers[i])),
                     textInput(inputId = paste0("alternative_driver_", i), label = "Write an alternative driver:")
                )
         )

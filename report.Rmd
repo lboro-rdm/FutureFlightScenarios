@@ -2,7 +2,8 @@
 title: "Future Flight Scenario Report"
 output: 
   pdf_document:
-    extra_dependencies: ["geometry"]
+    extra_dependencies: ["geometry", "pdfx"]  # Add pdfx for PDF/A compliance
+    latex_engine: xelatex                     # Use xelatex for better font support
 geometry: margin=1in, landscape
   
 params:
@@ -27,19 +28,22 @@ params:
 
 \[
 \begin{array}{c}
-\parbox{4cm}{\centering \textbf{Driver:} \\ `r params$driverTop`} \\\\
+\parbox{4cm}{\centering \textbf{Driver 1} \\ `r params$driverTop`} \\\\
 \hspace{10mm}
-\parbox{4cm}{\centering \textbf{Alternative Driver:} \\ `r params$altDriverRight`} \hspace{2mm}
+\parbox{4cm}{\centering \textbf{Driver 2} \\ `r params$driverLeft`}
+\hspace{2mm}
 \begin{array}{|l|l|}
 \hline
-\textbf{Scenario 1:} & \textbf{Scenario 2:} \\
+\textbf{Scenario 1} & \textbf{Scenario 2} \\
 \parbox{6cm}{`r params$scenario1`} & \parbox{6cm}{`r params$scenario2`} \\
 \hline
-\textbf{Scenario 3:} & \textbf{Scenario 4:} \\
+\textbf{Scenario 3} & \textbf{Scenario 4} \\
 \parbox{6cm}{`r params$scenario3`} & \parbox{6cm}{`r params$scenario4`} \\
 \hline
 \end{array}
-\hspace{2mm} \parbox{4cm}{\centering \textbf{Driver:} \\ `r params$driverLeft`} \\\\
-\parbox{4cm}{\centering \textbf{Alternative Driver:} \\ `r params$altDriverBottom`} 
+\hspace{2mm} 
+\parbox{4cm}{\centering \textbf{Alternative Driver 2} \\ `r params$altDriverRight`} \\\\
+\hspace{2mm} 
+\parbox{4cm}{\centering \textbf{Alternative Driver 1} \\ `r params$altDriverBottom`} 
 \end{array}
 \]

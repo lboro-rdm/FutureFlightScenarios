@@ -18,31 +18,34 @@
   width: auto !important; /* Keep dropdown width automatic */
 }
 
-/* Navbar styling */
+/* Navbar styling - Darker background for stronger contrast */
 .navbar {
-    background-color: #333 !important; /* Dark grey navbar */
-    color: white !important; /* White text */
-    border-bottom: 2px solid #222; /* Slightly darker bottom border */
+    background-color: #222 !important; /* Darker black navbar */
+    color: white !important;
+    border-bottom: 3px solid #000; /* More defined bottom border */
 }
 
 /* Navbar links */
 .navbar-nav > li > a {
-    color: white !important; /* Ensures the text is white */
+    color: #f1f1f1 !important; /* Slightly lighter white for better readability */
 }
 
 /* Selected tab styling */
 .navbar-nav > li.active > a,
 .navbar-nav > li.active > a:focus,
 .navbar-nav > li.active > a:hover {
-    background-color: #444 !important; /* Slightly lighter than the navbar */
+    background-color: #666 !important; /* More contrast from navbar */
     color: white !important;
 }
 
 /* Hover effect for navbar links */
 .navbar-nav > li > a:hover {
-    background-color: #555 !important; /* Even lighter on hover */
+    background-color: #777 !important; /* Lighter grey for strong contrast */
+    color: #fff !important; /* Ensures text remains readable */
 }
-/* Navbar title styling */
+
+/* Navbar title styling - Bright white for maximum contrast */
 .navbar .navbar-header .navbar-brand {
-    color: white !important; /* White color for the title */
+    color: #ffffff !important; /* Ensures title stands out */
+    font-weight: bold;
 }
