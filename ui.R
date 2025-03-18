@@ -64,7 +64,7 @@ ui <- fluidPage(
                                     p("Placeholder for instruction"),
                                     uiOutput("scenario_matrix_ui"),
                                     actionButton("back3", "Back"),
-                                    actionButton("download", "Download PDF")
+                                    downloadButton("downloadPDF", "Download PDF")
                            )
                )
              )

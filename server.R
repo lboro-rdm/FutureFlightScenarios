@@ -144,34 +144,103 @@ server <- function(input, output, session) {
   })
   
   output$scenario_matrix_ui <- renderUI({
-    req(input$drivers_selected, input$alternative_driver_1, input$alternative_driver_2)
+    req(input$drivers_selected, 
+        input$alternative_driver_1, 
+        input$alternative_driver_2, 
+        input$scenario_input_1, 
+        input$scenario_input_2, 
+        input$scenario_input_3, 
+        input$scenario_input_4)
     
     selected_drivers <- input$drivers_selected
     alternative_drivers <- c(input$alternative_driver_1, input$alternative_driver_2)
     
-    fluidRow(
-      column(4, "EMPTY"),
-      column(4, h4(selected_drivers[1])),
-      column(4, "EMPTY")
-    )
-    fluidRow(
-      column(4, h4(selected_drivers[2])),
-      column(4, div(style = "border: 2px solid black; padding: 20px; text-align: center;",
-                    fluidRow(
-                      column(6, h5("Scenario 1")),
-                      column(6, h5("Scenario 2"))
-                    ),
-                    fluidRow(
-                      column(6, h5("Scenario 3")),
-                      column(6, h5("Scenario 4"))
-                    )
-      )),
-      column(4, h4(alternative_drivers[2])),
-      column(4, ""),
-      column(4, h4(alternative_drivers[1])),
-      column(4, "")
+    tagList(
+      # First row: Empty space + Driver 1 label + Empty space
+      fluidRow(
+        column(4, ""),  
+        column(4, 
+               p(strong("Driver 1")),
+               p(selected_drivers[1])
+               ),  
+        column(4, "")   
+      ),
+      
+      # Second row: Driver 2 label + Scenario grid + Alternative Driver 2 label
+      fluidRow(
+        column(4, 
+               p(strong("Driver 2")),
+               p(selected_drivers[2])
+               ),  
+        column(4, div(style = "border: 2px solid black; padding: 20px; text-align: center;",
+                      fluidRow(
+                        column(6, p(paste0("Scenario 1: ", input$scenario_input_1))),
+                        column(6, p(paste0("Scenario 2: ", input$scenario_input_2)))
+                      ),
+                      fluidRow(
+                        column(6, p(paste0("Scenario 3: ", input$scenario_input_3))),
+                        column(6, p(paste0("Scenario 4: ", input$scenario_input_4)))
+                      )
+        )),
+        column(4, 
+               p(strong("Alternative Driver 2")),
+               p(alternative_drivers[2])
+               )  
+      ),
+      
+      # Third row: Empty space + Alternative Driver 1 label + Empty space
+      fluidRow(
+        column(4, ""),  
+        column(4, 
+               p(),
+               p(strong("Alternative Driver 1")),
+               p(alternative_drivers[1])
+               ),  
+        column(4, "")  
+      )
     )
   })
+  
+  output$downloadPDF <- downloadHandler(
+    filename = function() { paste("Future_Flight_Scenario_Report-", Sys.Date(), ".pdf", sep = "") },
+    
+    content = function(file) {
+      # Ensure inputs exist before proceeding
+      req(input$baseline_trends_selected, input$drivers_selected,
+          input$scenario_input_1, input$scenario_input_2,
+          input$scenario_input_3, input$scenario_input_4,
+          input$alternative_driver_1, input$alternative_driver_2)
+      
+      # Define selections explicitly
+      selected_baselines <- input$baseline_trends_selected
+      selected_drivers <- input$drivers_selected
+      alternative_drivers <- c(input$alternative_driver_1, input$alternative_driver_2)
+      
+      # Temporary file path for the RMarkdown document
+      tempReport <- file.path(tempdir(), "report.Rmd")
+      
+      # Copy the Rmd template to the temporary location
+      file.copy("report.Rmd", tempReport, overwrite = TRUE)
+      
+      # Render the RMarkdown document with the correct parameters
+      rmarkdown::render(tempReport, output_file = file,
+                        params = list(
+                          baseline1 = selected_baselines[1], 
+                          baseline2 = selected_baselines[2],
+                          driverTop = selected_drivers[1],
+                          driverLeft = selected_drivers[2],
+                          scenario1 = input$scenario_input_1,
+                          scenario2 = input$scenario_input_2,
+                          scenario3 = input$scenario_input_3,
+                          scenario4 = input$scenario_input_4,
+                          altDriverRight = alternative_drivers[2],
+                          altDriverBottom = alternative_drivers[1]
+                        ),
+                        envir = new.env(parent = globalenv())
+      )
+    }
+  )
+  
   
   # Navigation with Next/Back buttons and showing tabs dynamically
   observeEvent(input$next1, {

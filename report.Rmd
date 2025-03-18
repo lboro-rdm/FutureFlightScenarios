@@ -9,12 +9,12 @@ params:
   baseline1: ""
   baseline2: ""
   driverTop: ""
-  driverRight: ""
+  driverLeft: ""
   scenario1: ""
   scenario2: ""
   scenario3: ""
   scenario4: ""
-  altDriverLeft: ""
+  altDriverRight: ""
   altDriverBottom: ""
 ---
 
@@ -29,7 +29,7 @@ params:
 \begin{array}{c}
 \parbox{4cm}{\centering \textbf{Driver:} \\ `r params$driverTop`} \\\\
 \hspace{10mm}
-\parbox{4cm}{\centering \textbf{Alternative Driver:} \\ `r params$altDriverLeft`} \hspace{2mm}
+\parbox{4cm}{\centering \textbf{Alternative Driver:} \\ `r params$altDriverRight`} \hspace{2mm}
 \begin{array}{|l|l|}
 \hline
 \textbf{Scenario 1:} & \textbf{Scenario 2:} \\
@@ -39,10 +39,7 @@ params:
 \parbox{6cm}{`r params$scenario3`} & \parbox{6cm}{`r params$scenario4`} \\
 \hline
 \end{array}
-\hspace{2mm} \parbox{4cm}{\centering \textbf{Driver:} \\ `r params$driverRight`} \\\\
+\hspace{2mm} \parbox{4cm}{\centering \textbf{Driver:} \\ `r params$driverLeft`} \\\\
 \parbox{4cm}{\centering \textbf{Alternative Driver:} \\ `r params$altDriverBottom`} 
 \end{array}
 \]
-
-
-
