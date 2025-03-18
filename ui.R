@@ -8,10 +8,10 @@ ui <- fluidPage(
     title = "Future Flight Scenario Toolkit",
     
     # Tab 1: Prepare
-    tabPanel("Prepare"),
+    tabPanel("About"),
     
     # Tab 2: Imagine
-    tabPanel("Imagine",
+    tabPanel("Imagine your future",
              fluidPage(
                h1("Imagine your future"),
                p("Placeholder for general instructions"),
@@ -62,6 +62,7 @@ ui <- fluidPage(
                            tabPanel("Step 4",
                                     h2("Step 4: Download the PDF"),
                                     p("Placeholder for instruction"),
+                                    uiOutput("scenario_matrix_ui"),
                                     actionButton("back3", "Back"),
                                     actionButton("download", "Download PDF")
                            )
@@ -70,7 +71,7 @@ ui <- fluidPage(
     ),
     
     # Tab 3: Acknowledge
-    tabPanel("Acknowledge")
+    tabPanel("Acknowledgements")
   ),
   
   # Footer
