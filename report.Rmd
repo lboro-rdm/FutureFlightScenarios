@@ -3,8 +3,9 @@ title: "Future Flight Scenario Report"
 output: 
   pdf_document:
     extra_dependencies: ["geometry", "pdfx"]  # Add pdfx for PDF/A compliance
-    latex_engine: xelatex                     # Use xelatex for better font support
+    latex_engine: pdflatex                     # Use xelatex for better font support
 geometry: margin=1in, landscape
+
   
 params:
   baseline1: ""
