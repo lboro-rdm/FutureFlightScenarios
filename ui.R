@@ -79,6 +79,7 @@ ui <- fluidPage(
                            tabPanel("Step 4",
                                     h2("Step 4: Review and download the PDF"),
                                     p("Below, you will see your four imagined futures. Feel free to go back to previous tabs to make changes. Once you are happy with them, download the pdf as a reference."),
+                                    p(strong("If you are on your mobile, please rotate to landscape view to see the matrix properly laid out.")),
                                     uiOutput("scenario_matrix_ui"),
                                     actionButton("back3", "Back"),
                                     downloadButton("downloadPDF", "Download PDF"),
