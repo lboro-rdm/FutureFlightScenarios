@@ -28,7 +28,7 @@ ui <- fluidPage(
     tabPanel("Imagine your future",
              fluidPage(
                h1("Imagine your future"),
-               p("Five, maybe ten years from now, the world will look very different. In this section, you can imagine that world and create a possible response."),
+               p("Twenty-five years from now, the world will look very different. In this section, you can imagine that world and create a possible response."),
                p("Below is a step-by-step process that will guide you."),
                hr(),
                
@@ -41,16 +41,16 @@ ui <- fluidPage(
                                            p("Baseline trends capture the broader societal, technological, economic, or environmental trends in the envisioned future of 2050."),
                                            checkboxGroupInput(
                                              "baseline_trends_selected",
-                                             label = "Choose two that are relevant for your industry:",
+                                             label = "Choose two that reflect the trends you believe will shape the future of your organisation:",
                                              choices = baseline_trends
                                            )
                                       ),
                                       card(class = "card-box",
                                            h3("Industry drivers"),
-                                           p("Industry drivers are key factors that could influence the direction of your industry."),
+                                           p("Driver are factors that can significantly impact the outcomes of future scenarios, such as changes in technological, environmental, or organisational contexts."),
                                            checkboxGroupInput(
                                              "drivers_selected",
-                                             label = "Choose two drivers that you would like to work with:",
+                                             label = "Choose two drivers that may have significant impact on your organisation:",
                                              choices = drivers
                                            )
                                       )
@@ -60,7 +60,8 @@ ui <- fluidPage(
                            
                            tabPanel("Step 2",
                                     h2("Step 2: Write alternative drivers"),
-                                    p("Once you've selected the drivers in Step 1, imagine the alternative."),
+                                    p("Alternative drivers introduce variability into your scenarios. Write the opposite or alternative directions to the drivers you have selected in Step 1."),
+                                    p("Example: If selected SCENARIO DRIVER is “More people living in urban areas.” ALTERNATIVE DRIVER could be “More people living sub-urbs” OR “Growth in connected satellite towns.”"),
                                     uiOutput("alternative_drivers_ui"),
                                     actionButton("back1", "Back"),
                                     actionButton("next2", "Next")
@@ -69,6 +70,7 @@ ui <- fluidPage(
                            tabPanel("Step 3",
                                     h2("Step 3: Write your four scenarios"),
                                     p("Now that you have selected your trends and drivers, and imagined alternative drivers, create a response to that future world."),
+                                    p("Write brief descriptions for each scenario (2 – 3 sentences). Please try to capture the essence and key characteristics of each scenario."),
                                     uiOutput("scenario_ui"),
                                     actionButton("back2", "Back"),
                                     actionButton("next3", "Next")
@@ -79,7 +81,8 @@ ui <- fluidPage(
                                     p("Below, you will see your four imagined futures. Feel free to go back to previous tabs to make changes. Once you are happy with them, download the pdf as a reference."),
                                     uiOutput("scenario_matrix_ui"),
                                     actionButton("back3", "Back"),
-                                    downloadButton("downloadPDF", "Download PDF")
+                                    downloadButton("downloadPDF", "Download PDF"),
+                                    downloadButton("downloadExample", "Download Example PDF")
                            )
                )
              )

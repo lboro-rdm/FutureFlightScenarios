@@ -4,7 +4,7 @@ output:
   pdf_document:
     extra_dependencies: ["geometry", "pdfx"]  # Add pdfx for PDF/A compliance
     latex_engine: pdflatex                     # Use xelatex for better font support
-geometry: margin=1in, landscape
+geometry: margin=0.5in, landscape
 
   
 params:

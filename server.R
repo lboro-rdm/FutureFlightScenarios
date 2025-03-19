@@ -158,21 +158,21 @@ server <- function(input, output, session) {
     tagList(
       # First row: Empty space + Driver 1 label + Empty space
       fluidRow(
-        column(4, ""),  
-        column(4, 
+        column(3, ""),  
+        column(6, 
                p(strong("Driver 1")),
                p(selected_drivers[1])
                ),  
-        column(4, "")   
+        column(3, "")   
       ),
       
       # Second row: Driver 2 label + Scenario grid + Alternative Driver 2 label
       fluidRow(
-        column(4, 
+        column(3, 
                p(strong("Driver 2")),
                p(selected_drivers[2])
                ),  
-        column(4, div(style = "border: 2px solid black; padding: 20px; text-align: center;",
+        column(6, div(style = "border: 2px solid black; padding: 20px; text-align: center;",
                       fluidRow(
                         column(6, p(paste0("Scenario 1: ", input$scenario_input_1))),
                         column(6, p(paste0("Scenario 2: ", input$scenario_input_2)))
@@ -182,7 +182,7 @@ server <- function(input, output, session) {
                         column(6, p(paste0("Scenario 4: ", input$scenario_input_4)))
                       )
         )),
-        column(4, 
+        column(3, 
                p(strong("Alternative Driver 2")),
                p(alternative_drivers[2])
                )  
@@ -190,13 +190,13 @@ server <- function(input, output, session) {
       
       # Third row: Empty space + Alternative Driver 1 label + Empty space
       fluidRow(
-        column(4, ""),  
-        column(4, 
+        column(3, ""),  
+        column(6, 
                p(),
                p(strong("Alternative Driver 1")),
                p(alternative_drivers[1])
                ),  
-        column(4, "")  
+        column(3, "")  
       )
     )
   })
@@ -241,6 +241,14 @@ server <- function(input, output, session) {
     }
   )
   
+  output$downloadExample <- downloadHandler(
+    filename = function() {
+      "Example.pdf"
+    },
+    content = function(file) {
+      file.copy("www/Example.pdf", file)
+    }
+  )
   
   # Navigation with Next/Back buttons and showing tabs dynamically
   observeEvent(input$next1, {
